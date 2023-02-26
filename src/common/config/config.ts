@@ -15,6 +15,7 @@ interface ENV {
   DB_PORT: string | undefined;
   DB_HOST: string | undefined;
   PORT: number | undefined;
+  JWT_SECRET_USER: string | undefined;
 }
 
 interface Config {
@@ -36,6 +37,7 @@ const getConfig = (): ENV => {
     DB_HOST: process.env.DB_HOST,
     DB_PORT: process.env.DB_PORT,
     PORT: process.env.PORT ? Number(process.env.PORT) : undefined,
+    JWT_SECRET_USER: process.env.JWT_SECRET_USER,
   };
 };
 

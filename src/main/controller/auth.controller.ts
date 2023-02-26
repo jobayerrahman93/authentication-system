@@ -9,6 +9,7 @@ class AuthController extends abstractController {
     super();
   }
 
+  // user register controller
   public userRegisterController = this.assyncWrapper.wrap(
     async (req: Request, res: Response) => {
       const data = await this.authService.authRegisterService(req);

@@ -10,6 +10,7 @@ class AuthRouter extends AbstractRouter {
   }
 
   private callRouter() {
+    // user register router
     this.routers
       .route("/user/registration")
       .post(
