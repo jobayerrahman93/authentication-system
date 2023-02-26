@@ -21,6 +21,18 @@ class AuthController extends abstractController {
       }
     }
   );
+  // user login controller
+  public userLoginController = this.assyncWrapper.wrap(
+    async (req: Request, res: Response) => {
+      const data = await this.authService.authLoginService(req);
+
+      if (data.success) {
+        res.status(200).json(data);
+      } else {
+        res.status(400).json(data);
+      }
+    }
+  );
 }
 
 export default AuthController;
