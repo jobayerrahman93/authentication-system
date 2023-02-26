@@ -37,7 +37,7 @@ class App {
   // init routers
   private initRouters() {
     this.app.get("/", (_req: Request, res: Response) => {
-      res.send("Ostad server is running...");
+      res.send("Authentication server is running...");
     });
   }
 

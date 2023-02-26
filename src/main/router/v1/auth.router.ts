@@ -9,7 +9,14 @@ class AuthRouter extends AbstractRouter {
     this.callRouter();
   }
 
-  private callRouter() {}
+  private callRouter() {
+    this.routers
+      .route("/user/registration")
+      .post(
+        this.AuthInputValidatior.userRegisterValidation(),
+        this.authController.userRegisterController
+      );
+  }
 }
 
 export default AuthRouter;
