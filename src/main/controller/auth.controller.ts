@@ -57,6 +57,19 @@ class AuthController extends abstractController {
       }
     }
   );
+
+  // user forget password controller
+  public forgetPasswordController = this.assyncWrapper.wrap(
+    async (req: Request, res: Response) => {
+      const data = await this.authService.userForgetPasswordService(req);
+
+      if (data.success) {
+        res.status(200).json(data);
+      } else {
+        res.status(400).json(data);
+      }
+    }
+  );
 }
 
 export default AuthController;

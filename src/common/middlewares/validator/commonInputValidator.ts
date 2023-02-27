@@ -13,7 +13,7 @@ class CommonInputValidation {
   public matchOtpInputValidator() {
     return [
       body("otp_type", "Please enter valid OTP type as login or register").isIn(
-        ["login", "register", "phone-verify"]
+        ["login", "register", "phone-verify", "forget-password"]
       ),
       body("user_phone", "Enter phone number").exists().notEmpty(),
       body("otp", "Provide otp").exists(),

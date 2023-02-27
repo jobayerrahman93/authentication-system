@@ -211,6 +211,42 @@ class AuthService extends AbstractServices {
       };
     }
   };
+
+  // user forget password service
+  public userForgetPasswordService = async (req: Request) => {
+    const { new_password, token, user_phone: userPhone } = req.body;
+
+    const tokenVerify: any = Lib.verifyToken(token, config.JWT_SECRET_USER);
+    const hashPass = await Lib.hashPass(new_password);
+    if (tokenVerify) {
+      const { user_phone, type } = tokenVerify;
+
+      if (userPhone === user_phone && type === "forget-password") {
+        const res = await this.db("user")
+          .update({ hashed_password: hashPass })
+          .where({ user_phone });
+        if (res) {
+          return {
+            success: true,
+            message: "Successfully Changed password",
+          };
+        } else {
+          return {
+            success: false,
+            message: "Cannot Changed password now",
+          };
+        }
+      } else {
+        return {
+          success: false,
+          message:
+            "Unauthorized token, It doesent match with your phone or type",
+        };
+      }
+    } else {
+      return { success: false, message: "Invalid token or token expired" };
+    }
+  };
 }
 
 export default AuthService;

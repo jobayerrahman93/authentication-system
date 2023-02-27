@@ -45,7 +45,7 @@ class CommonService extends AbstractServices {
 
         return {
           success: true,
-          message: `Your otp is ${otp}`,
+          message: `Your otp ${otp_type} is ${otp}`,
         };
       } else {
         return {
