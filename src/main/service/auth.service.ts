@@ -73,6 +73,7 @@ class AuthService extends AbstractServices {
     });
   };
 
+  // user login service
   public authLoginService = async (req: Request) => {
     const { user_phone, user_password } = req.body;
     const checkMember = await this.db("user")
