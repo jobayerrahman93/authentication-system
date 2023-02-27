@@ -1,0 +1,193 @@
+{
+  "info": {
+    "_postman_id": "3790ef80-ebbb-44e0-b77a-7b8a0005ee0e",
+    "name": "Authentication",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "24139841"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "User registration",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"user_name\":\"Hamid Rahman\",\r\n    \"user_phone\":\"01705732558\",\r\n    \"user_email\":\"hamid.rahman98@gmail.com\",\r\n    \"user_password\":\"123456789012\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:9009/api/v1/auth/user/registration",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9009",
+              "path": ["api", "v1", "auth", "user", "registration"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User login with phone number",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"user_phone\":\"01705732553\",\r\n    \"user_password\":\"1234567890123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:9009/api/v1/auth/user/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9009",
+              "path": ["api", "v1", "auth", "user", "login"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Otp",
+      "item": [
+        {
+          "name": "Send otp to phone",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"otp_phone\":\"01705732553\",\r\n    \"otp_type\":\"phone-verify\" \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:9009/api/v1/common/send-phone/otp",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9009",
+              "path": ["api", "v1", "common", "send-phone", "otp"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Match Otp",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"user_phone\":\"01705732553\",\r\n    \"otp_type\":\"phone-verify\",\r\n    \"otp\":\"249084\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:9009/api/v1/common/match-otp",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9009",
+              "path": ["api", "v1", "common", "match-otp"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Verify phone number",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"user_phone\":\"01705732553\",\r\n    \"otp_type\":\"phone-verify\",\r\n    \"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX3Bob25lIjoiMDE3MDU3MzI1NTMiLCJ0eXBlIjoicGhvbmUtdmVyaWZ5IiwiaWF0IjoxNjc3NTIzNjMzLCJleHAiOjE2Nzc1MjM5MzN9.WjXbMbjHEISPUF0v2HH8WGgklGgTpn-ab89RxNNUpqo\",\r\n    \"user_id\":4\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:9009/api/v1/auth/verify-phone",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9009",
+              "path": ["api", "v1", "auth", "verify-phone"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"old_password\":\"123456789012\",\r\n    \"new_password\":\"1234567890123\",\r\n    \"user_id\":15\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:9009/api/v1/auth/change-password",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9009",
+              "path": ["api", "v1", "auth", "change-password"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Forget Password",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX3Bob25lIjoiMDE3MDU3MzI1NTMiLCJ0eXBlIjoiZm9yZ2V0LXBhc3N3b3JkIiwiaWF0IjoxNjc3NTIyOTcyLCJleHAiOjE2Nzc1MjMyNzJ9.l-YPbfRFbbROuhAsQOA0IYFFuDFdWtWHB3Mwv_ZGkzA\",\r\n    \"user_phone\":\"01705732553\",\r\n    \"new_password\":\"1234567890123\"\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:9009/api/v1/auth/forget-password",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "9009",
+              "path": ["api", "v1", "auth", "forget-password"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
