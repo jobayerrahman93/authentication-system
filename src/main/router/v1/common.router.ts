@@ -10,13 +10,20 @@ class CommonRouter extends AbstractRouter {
   }
 
   private callRouter() {
-    // user register router
+    // send otp router
     this.routers
       .route("/send-phone/otp")
       .post(
         this.CommonInputValidator.sentOtpPhoneInputValidator(),
         this.commonController.sentOtpController
       );
+
+    // match phone otp
+    this.routers.post(
+      "/match-otp",
+      this.CommonInputValidator.matchOtpInputValidator(),
+      this.commonController.matchOtpController
+    );
   }
 }
 

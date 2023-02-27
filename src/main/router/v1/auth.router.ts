@@ -24,6 +24,10 @@ class AuthRouter extends AbstractRouter {
         this.AuthInputValidator.userLoginValidator(),
         this.authController.userLoginController
       );
+    // user login router
+    this.routers
+      .route("/verify-phone")
+      .put(this.AuthInputValidator.verifyPhoneValidator());
   }
 }
 

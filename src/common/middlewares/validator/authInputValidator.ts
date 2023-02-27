@@ -36,6 +36,21 @@ class AuthInputValidation {
       ).isLength({ min: 12 }),
     ];
   }
+  //user login validator
+  public verifyPhoneValidator() {
+    return [
+      body("user_phone", "Please provide valid phone number!")
+        .isLength({
+          min: 11,
+          max: 14,
+        })
+        .isString()
+        .exists(),
+
+      body("otp_type", "Please provide otp type").exists(),
+      body("token", "Please provide token").exists(),
+    ];
+  }
 }
 
 export default AuthInputValidation;

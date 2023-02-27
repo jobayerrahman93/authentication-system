@@ -20,6 +20,19 @@ class CommonController extends abstractController {
       }
     }
   );
+
+  // match otp controller
+  public matchOtpController = this.assyncWrapper.wrap(
+    async (req: Request, res: Response) => {
+      const data = await this.commonService.matchPhoneOtpService(req.body);
+
+      if (data.success) {
+        res.status(200).json(data);
+      } else {
+        res.status(400).json(data);
+      }
+    }
+  );
 }
 
 export default CommonController;
