@@ -51,6 +51,22 @@ class AuthInputValidation {
       body("token", "Please provide token").exists(),
     ];
   }
+
+  // change password after login validator
+
+  public changePasswordValidator() {
+    return [
+      body("user_id", "Please provide user id").exists(),
+      body(
+        "old_password",
+        "Please provide a password and password length will be atleast 12 "
+      ).isLength({ min: 12 }),
+      body(
+        "new_password",
+        "Please provide a new password and password length will be atleast 12 "
+      ).isLength({ min: 12 }),
+    ];
+  }
 }
 
 export default AuthInputValidation;

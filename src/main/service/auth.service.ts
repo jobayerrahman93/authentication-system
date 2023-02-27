@@ -94,8 +94,6 @@ class AuthService extends AbstractServices {
       };
     }
 
-    console.log(checkMember);
-
     const verifiedUser = checkMember.filter(
       (user) => user.verified_phone === "verified"
     );
@@ -166,6 +164,50 @@ class AuthService extends AbstractServices {
       return {
         success: false,
         message: "Invalid token please try again!",
+      };
+    }
+  };
+
+  // user change password service
+  public userChangePasswordService = async (req: Request) => {
+    const { new_password, old_password, user_id } = req.body;
+
+    const checkMember = await this.db("user")
+      .select("user_name", "user_phone", "hashed_password")
+      .where({ user_id });
+
+    if (checkMember.length) {
+      const { hashed_password } = checkMember[0];
+
+      const checkPass = await Lib.compare(old_password, hashed_password);
+      const hashPass = await Lib.hashPass(new_password);
+
+      if (checkPass) {
+        const res = await this.db("user")
+          .update({ hashed_password: hashPass })
+          .where({ user_id });
+
+        if (res) {
+          return {
+            success: true,
+            message: "Successfully Changed password",
+          };
+        } else {
+          return {
+            success: false,
+            message: "Cannot Changed password now",
+          };
+        }
+      } else {
+        return {
+          success: false,
+          message: "Incorrect password",
+        };
+      }
+    } else {
+      return {
+        success: false,
+        message: "User Not Found",
       };
     }
   };

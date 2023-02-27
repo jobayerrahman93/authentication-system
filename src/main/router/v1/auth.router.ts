@@ -31,6 +31,13 @@ class AuthRouter extends AbstractRouter {
         this.AuthInputValidator.verifyPhoneValidator(),
         this.authController.userVerifyPhoneController
       );
+    // change password after login router
+    this.routers
+      .route("/change-password")
+      .put(
+        this.AuthInputValidator.changePasswordValidator(),
+        this.authController.userChangePasswordController
+      );
   }
 }
 
