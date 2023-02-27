@@ -71,8 +71,6 @@ class CommonService extends AbstractServices {
       .andWhere("otp_tried", "<", 3)
       .andWhereRaw("ADDTIME(otp_create_time, '0:5:0') > NOW()");
 
-    console.log({ checkOtp });
-
     if (!checkOtp.length) {
       return {
         success: false,
