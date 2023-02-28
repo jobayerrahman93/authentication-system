@@ -2,6 +2,7 @@ import cors from "cors";
 import express, { Application, Request, Response } from "express";
 import morgan from "morgan";
 import config from "../common/config/config";
+import ErrorHandler from "../common/middlewares/errorHandlers/errorHandler";
 import Notfound from "../common/middlewares/mini/notFoundRoute";
 import { origin } from "./miscellaneous/constants";
 import Routes from "./routes";
@@ -18,6 +19,7 @@ class App {
     this.initMiddlewares();
     this.allRoutes();
     this.notFoundRouter();
+    this.errorHandler();
   }
 
   // listen app
@@ -49,6 +51,12 @@ class App {
   // not found route
   private notFoundRouter() {
     this.app.use("*", new Notfound()[404]);
+  }
+
+  // error handler
+  private errorHandler() {
+    const errorHandler = new ErrorHandler();
+    this.app.use(errorHandler.handleErrors);
   }
 }
 export default App;
